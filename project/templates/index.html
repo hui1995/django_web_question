@@ -67,8 +67,14 @@
           <div class="form-group">
     <label for="exampleInputPassword1">country</label>
      <select class="form-control" name="country" id="exampleInputAddress1">
-        <option>china</option>
-        <option>USA</option>
+
+
+         {% for foo in countrylst %}
+                 <option>{{ foo }}</option>
+
+
+         {% endfor %}
+
       </select>  </div>
           <div class="form-group">
     <label for="exampleInputPassword1" >state/province</label>

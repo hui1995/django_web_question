@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from django import views
 from myApp.models import Question,AnswerRecord,Answer,Kit_Interested_Countries
 from userApp.models import MyUser as User
+from django_countries import countries
+
 
 # Create your views here.
 from myApp.utils import Mail
@@ -19,6 +21,7 @@ class IndexView(views.View):
             id=1
         question=Question.objects.get(qid=id)
         Isanswer =False
+
 
         return render(request,'index.html',locals())
 
@@ -37,6 +40,10 @@ class IndexAnsView(views.View):
                 Recommendation=" You are free to go next question."
             else:
                 isFirst=True
+                countrylst = []
+
+                for code, name in list(countries):
+                    countrylst.append(name)
 
             Answer.objects.create(titleId=id,rid=answerRecord.id,result=type)
 
@@ -93,8 +100,8 @@ class adminView(views.View):
             for i in range(0,11):
                 Question.objects.create(title="question"+str(i),qid=i)
 
-            questionlst=Question.objects.all()
-            return render(request,'admin.html',locals())
+        questionlst=Question.objects.all()
+        return render(request,'admin.html',locals())
 
 
 class adminDetailView(views.View):
@@ -122,7 +129,10 @@ class adminUserListView(views.View):
         result=[]
         for i in record:
             dict1={}
-            user=User.objects.get(id=i.userId)
+            try:
+                user=User.objects.get(id=i.userId)
+            except:
+                continue
             dict1['name']=user.username
             dict1['id']=i.id
             result.append(dict1)
