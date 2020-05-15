@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="list-group">
+    {% for foo in questionlst %}
+          <a href="/detail?id={{ foo.id }}" class="list-group-item" style="height: 80px;line-height: 80px;font-size: 18px">
+            问题　{{ foo.qid }}:{{ foo.title }}
+
+          </a>
+
+
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}

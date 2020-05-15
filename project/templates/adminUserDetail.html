@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-6">
+
+  <div class="list-group">
+    {% for foo in result %}
+          <li class="list-group-item" >
+
+           <h4 class="list-group-item-heading"> question {{ foo.id }}:{{ foo.title }}</h4>
+    <p class="list-group-item-text text-muted"> User answer:   {{ foo.anser }}</p>
+
+
+
+          </li>
+
+
+    {% endfor %}
+
+
+</div>
+
+
+
+
+
+</div>
+
+<div class="col-xs-6">
+
+{% if isnotAs %}
+
+
+
+  <div class="form-group">
+    <label for="exampleInputAccount1">first and last name</label>
+          <input type="text" class="form-control" name="suburb"  value="{{ userinfo.name }}"  placeholder=""  readonly="true">
+
+  </div>
+
+          <div class="form-group">
+    <label for="exampleInputPassword1">gender</label>
+
+
+              <input type="text" class="form-control" name="suburb" value="{{ userinfo.gender }}" placeholder="" readonly="true">
+
+          </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">suburb/postcode</label>
+    <input type="text" class="form-control" name="suburb" value="{{ userinfo.suburb }}" placeholder="" readonly="true">
+  </div>
+
+          <div class="form-group">
+    <label for="exampleInputPassword1">country</label>
+       <input type="text" class="form-control" name="suburb" value="{{ userinfo.country }}" placeholder="" readonly="true">
+
+          <div class="form-group">
+    <label for="exampleInputPassword1" >state/province</label>
+    <input type="text" class="form-control" name="province" value="{{ userinfo.province }}"  placeholder="" readonly="true">
+  </div>
+
+
+
+        <div class="form-group">
+    <label for="exampleInputPassword1">email address</label>
+    <input type="email" class="form-control" name="email" value="{{ userinfo.email }}"  placeholder="" readonly="true">
+  </div>
+
+    {% endif %}
+
+
+
+
+
+
+</div>
+{% endblock %}
